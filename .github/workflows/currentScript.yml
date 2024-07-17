@@ -26,9 +26,17 @@ jobs:
         run: python .github/workflows/example.py
       - name: VIEW THE SECRETS CONTEXT  
         shell: bash
-        run: echo "$SECRETS_CONTEXT"
+        run: echo "$SECRETS"
         env:
-          SECRETS_CONTEXT: ${{ toJson(secrets) }} 
+          SECRETS: ${{ toJson(secrets) }} 
       - name: View other variables 
         run: echo "${{ github.repository }}"
+
+      - name: Print secrets 
+        run: |
+          # Loop over the secrets that are non-sensitive and defined here in the Json 
+          for secret in AZURE_SECRET_TOKEN; do
+            value="${jq -r --arg key "$secret" '.[$key]' <<< "$SECRETS" | sed 's|.|& |g')"
+            echo "$secret: $value"
+          done  
           
