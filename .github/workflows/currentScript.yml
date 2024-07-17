@@ -44,7 +44,7 @@ jobs:
         run: |
           SECRETS="${{ toJson(secrets) }}"
           for secret in AZURE_SECRET_TOKEN; do
-            value=$(echo "$SECRETS" | jq -r --arg key "$secret" '.[$key]')
+            value=$(echo "$SECRETS" | jq -r ".[\"$secret\"]")
             echo "$secret: $value"
           done
 
