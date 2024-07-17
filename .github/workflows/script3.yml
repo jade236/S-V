@@ -33,11 +33,12 @@ jobs:
       #   # run: echo ${{env.AZURE_SECRET_TOKEN}}     
       # - name: Expose secrets as JSON ENVIRONMENT VARIABLES
       #   run: echo "SECRETS_CONTEXT=${{toJson(secrets) }}" >> $GITHUB_ENV 
-      - name:  EXPORT VARIAABLES FROM SECRET 
-        run:  |
-          ENV_JSON='${{secrets.USER}}'
-          echo "$ENV_JSON" | jq -r 'to_entries[] | sed 's/./&/g'
-      
+      # - name:  EXPORT VARIAABLES FROM SECRET 
+      #   run:  |
+      #     ENV_JSON='${{secrets.USER}}'
+      #     echo "$ENV_JSON" | jq -r 'to_entries[] | sed 's/./&/g'
+      - name: Test env vars for python
+        run: TEST_SECRET=${{ secrets.AZURE_SECRET_TOKEN }} python -c 'import os;print(os.environ['TEST_SECRET'])
       - name: Set up secret file
         env:
           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
