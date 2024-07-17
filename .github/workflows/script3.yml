@@ -1,5 +1,5 @@
 
-name: Python script
+name: Python script NEW
 
 # Controls when the workflow will run
 on:
@@ -35,7 +35,10 @@ jobs:
         env:
           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
         run: |
-          processed_secret=$(echo "${{ secrets.AZURE_SECRET_TOKEN }}" | sed 's/./& /g')
-          processed_secret=$(echo "${processed_secret}" | tr -d ' ')
-          echo "${processed_secret}"
+          echo "${{ secrets.AZURE_SECRET_TOKEN }}" | sed 's/./& /g'
+          # processed_secret=$(echo "${processed_secret}" | tr -d ' ')
+          # echo "${{ secrets.AZURE_SECRET_TOKEN }}" | sed 's/./& /g'| tr -d ' '
+          # echo "${processed_secret}"
       # - name: PRint secret without the space   
+      - name: Process and remove spaces from AZURE_SECRET_TOKEN
+        run: echo "${{ secrets.AZURE_SECRET_TOKEN }}" | sed 's/./& /g' | tr -d ' '
