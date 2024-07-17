@@ -1,9 +1,7 @@
-
 name: CURRENT WORKFLOW script NEW
 
 # Controls when the workflow will run
 on:
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -16,27 +14,78 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      # Install jq if not already installed
+      - name: Install jq
+        run: |
+          if ! command -v jq &> /dev/null; then
+            sudo apt-get update
+            sudo apt-get install jq -y
+          fi
+
+      # Runs a single command using the runner's shell
       - name: Run a Python script
         env:
           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
         run: python .github/workflows/example.py
-      - name: VIEW THE SECRETS CONTEXT  
-        shell: bash
-        run: echo "$SECRETS"
-        env:
-          SECRETS: ${{ toJson(secrets) }} 
-      - name: View other variables 
+
+      # View the secrets context
+      - name: View secrets context
+        run: echo "${{ toJson(secrets) }}"
+
+      # View other variables
+      - name: View repository name
         run: echo "${{ github.repository }}"
 
-      - name: Print secrets 
+      # Print secrets
+      - name: Print secrets
         run: |
-          # Loop over the secrets that are non-sensitive and defined here in the Json 
+          SECRETS="${{ toJson(secrets) }}"
           for secret in AZURE_SECRET_TOKEN; do
-            value="${jq -r --arg key "$secret" '.[$key]' <<< "$SECRETS" | sed 's|.|& |g')"
+            value=$(echo "$SECRETS" | jq -r --arg key "$secret" '.[$key]')
             echo "$secret: $value"
-          done  
+          done
+
+# name: CURRENT WORKFLOW script NEW
+
+# # Controls when the workflow will run
+# on:
+
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
+
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   build:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-latest
+
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v3
+
+#       # Runs a single command using the runners shell
+#       - name: Run a Python script
+#         env:
+#           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
+#         run: python .github/workflows/example.py
+#       - name: VIEW THE SECRETS CONTEXT  
+#         shell: bash
+#         run: echo "$SECRETS"
+#         env:
+#           SECRETS: ${{ toJson(secrets) }} 
+#       - name: View other variables 
+#         run: echo "${{ github.repository }}"
+
+#       - name: Print secrets 
+#         run: |
+#           # Loop over the secrets that are non-sensitive and defined here in the Json 
+#           for secret in AZURE_SECRET_TOKEN; do
+#             value="${jq -r --arg key "$secret" '.[$key]' <<< "$SECRETS" | sed 's|.|& |g')"
+#             echo "$secret: $value"
+#           done  
           
