@@ -30,7 +30,10 @@ jobs:
       #      import os 
       #      for q in (os.getenv("AZURE_SECRET_TOKEN")):
       #        print(q)
-      #   # run: echo ${{env.AZURE_SECRET_TOKEN}}      
+      #   # run: echo ${{env.AZURE_SECRET_TOKEN}}     
+      - name: Expose secrets as JSON ENVIRONMENT VARIABLES
+        run: echo "SECRETS_CONTEXT=${{toJson(secrets) }}" >> $GITHUB_ENV 
+
       - name: Set up secret file
         env:
           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
@@ -46,3 +49,4 @@ jobs:
         run: |  
               AZURE_SECRET_TOKEN_NO_SPACES=$(echo "${{ secrets.AZURE_SECRET_TOKEN }}" | tr -d ')  
               echo "Azure Secret Token without spaces: $AZURE_SECRET_TOKEN_NO_SPACES"  
+      
