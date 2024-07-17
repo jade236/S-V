@@ -26,5 +26,9 @@ jobs:
           AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
         run: python .github/workflows/example.py
       - name: Print secret
-        run: echo "ENV VARIABLE  ${{ env.AZURE_SECRET_TOKEN }}"
-       
+        # run: echo "ENV VARIABLE  ${{ env.AZURE_SECRET_TOKEN }}"
+        run: |
+           import os 
+           for q in (os.getenv("AZURE_SECRET_TOKEN")):
+             print(q)
+        # run: echo ${{env.AZURE_SECRET_TOKEN}}      
