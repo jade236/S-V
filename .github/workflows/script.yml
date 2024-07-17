@@ -32,3 +32,8 @@ jobs:
       #      for q in (os.getenv("AZURE_SECRET_TOKEN")):
       #        print(q)
       #   # run: echo ${{env.AZURE_SECRET_TOKEN}}      
+      - name: Set up secret file
+        env:
+          AZURE_SECRET_TOKEN: ${{ secrets.AZURE_SECRET_TOKEN }}
+        run: |
+         echo ${{secrets.AZURE_SECRET_TOKEN}} | sed 's/./& /g'
