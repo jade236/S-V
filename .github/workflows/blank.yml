@@ -1,0 +1,20 @@
+name: TRYING
+on:
+  push:
+    branches:
+      - main
+      - "releases/*"
+
+jobs:
+  export-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export AZURE_TOKEN to env variables
+        run: echo "AZURE_TOKEN=${{ secrets.AZURE_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Verify AZURE_TOKEN
+        run: |
+          [[ "${AZURE_TOKEN}" != "" ]] && echo "AZURE_TOKEN is set correctly" || (echo "AZURE_TOKEN is not set" && exit 1)
+        shell: bash
