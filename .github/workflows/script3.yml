@@ -45,8 +45,8 @@ jobs:
       # - name: PRint secret without the space   
       # - name: Process and remove spaces from AZURE_SECRET_TOKEN
         # run: echo "${{ secrets.AZURE_SECRET_TOKEN }}" | sed 's/./& /g' | tr -d ' '
-      - name: Process and remove spaces from AZURE_SECRET_TOKEN  
-        run: |  
-              AZURE_SECRET_TOKEN_NO_SPACES=$(echo "${{ secrets.AZURE_SECRET_TOKEN }}" | tr -d ')  
-              echo "Azure Secret Token without spaces: $AZURE_SECRET_TOKEN_NO_SPACES"  
+      # - name: Process and remove spaces from AZURE_SECRET_TOKEN  
+      #   run: |  
+      #         AZURE_SECRET_TOKEN_NO_SPACES=$(echo "${{ secrets.AZURE_SECRET_TOKEN }}" | tr -d ')  
+      #         echo "Azure Secret Token without spaces: $AZURE_SECRET_TOKEN_NO_SPACES"  
       
