@@ -24,4 +24,16 @@ jobs:
 
     # - name: READING VARIABLE FROM THE ENV
       # run: echo "Hello $${{ env.GH }}"
+
+      
+    - name: Print specific variables
+      run: |
+          for var in VAR1 VAR2; do
+            echo "$var: ${!var}"
+          done
+          
+      env:
+          VAR1: ${{ vars.GREET }}
+          VAR2: ${{ vars.MEDIUM }}
+          # VAR3: ${{ vars.VAR3 }}
       
