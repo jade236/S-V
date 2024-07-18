@@ -14,16 +14,14 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-      GH: ${{ vars.GREET }} 
+    # env:
+    #   GH: ${{ vars.GREET }} 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
     - name: Read a variable
-     # env:
-     # variablee: ${{ vars.GREET }}
-      run: echo "Hello ${{ vars.GREET }}"
+      run: echo "{{ vars.GREET }} ITS ME!"
 
-    - name: READING VARIABLE FROM THE ENV
-      run: echo "Hello $${{ env.GH }}"
+    # - name: READING VARIABLE FROM THE ENV
+      # run: echo "Hello $${{ env.GH }}"
       
