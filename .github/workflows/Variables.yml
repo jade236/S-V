@@ -20,7 +20,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Read a variable
-      run: echo "${{ vars.GREET }} ITS ME!"
+      run: echo "${{ vars.MEDIUM }} ITS ME!"
 
     # - name: READING VARIABLE FROM THE ENV
       # run: echo "Hello $${{ env.GH }}"
