@@ -41,20 +41,27 @@ jobs:
           VAR2: ${{ vars.MEDIUM }}
           # VAR3: ${{ vars.VAR3 }}
 
-    - name: Print variables 
+    # - name: Print variables 
          
-    - name: Print VARIABLES AT REPOSITORY LEVEL
-      # env:
-      #     SECRETS: '${{ toJson(secrets) }}'
-      #     # INPUT_SECRETS_LIST: '${{ github.event.inputs.secrets_list }}'
+    # - name: Print VARIABLES AT REPOSITORY LEVEL
+    #   # env:
+    #   #     SECRETS: '${{ toJson(secrets) }}'
+    #   #     # INPUT_SECRETS_LIST: '${{ github.event.inputs.secrets_list }}'
          
-      run: |
-          IFS=',' read -ra string_array <<< ${{ github.event.inputs.my_vars }}
+    #   run: |
+    #       IFS=',' read -ra string_array <<< ${{ github.event.inputs.my_vars }}
 
-          for vari in "${string_array[@]}"; do
-            value="$(jq -r --arg key "$vari" '.[$key]' <<< "$my_vars" | sed 's|.|& |g')"
-            echo "$vari: $value"
-            # echo "$secret=$value" >> $GITHUB_ENV
-          done
-      
+    #       for vari in "${string_array[@]}"; do
+    #         value="$(jq -r --arg key "$vari" '.[$key]' <<< "$my_vars" | sed 's|.|& |g')"
+    #         echo "$vari: $value"
+    #         # echo "$secret=$value" >> $GITHUB_ENV
+    #       done
+
+    - name: Print input variables
+      run: |
+          IFS=',' read -ra vars_array <<< "${{ github.event.inputs.my_vars }}"
+          for var in "${vars_array[@]}"; do
+            value="${!var}"
+            echo "$var: $value"
+          done  
     
