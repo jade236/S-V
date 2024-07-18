@@ -43,10 +43,10 @@ jobs:
 
     - name: Print variables 
          
-    - name: Print Secrets
-      env:
-          SECRETS: '${{ toJson(secrets) }}'
-          # INPUT_SECRETS_LIST: '${{ github.event.inputs.secrets_list }}'
+    - name: Print VARIABLES AT REPOSITORY LEVEL
+      # env:
+      #     SECRETS: '${{ toJson(secrets) }}'
+      #     # INPUT_SECRETS_LIST: '${{ github.event.inputs.secrets_list }}'
          
       run: |
           IFS=',' read -ra string_array <<< ${{ github.event.inputs.my_vars }}
