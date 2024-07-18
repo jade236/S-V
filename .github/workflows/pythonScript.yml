@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: python print secret
       env:
-        MY_VAL: ${{ secrets.SUPER_SECRET }}
+        MY_VAL: ${{ secrets.A }}
       run: |
         import os
         for q in (os.getenv("MY_VAL")):
