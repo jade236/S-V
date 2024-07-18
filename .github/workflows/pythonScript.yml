@@ -16,6 +16,6 @@ jobs:
       run: |
         import os
         for q in (os.getenv("MY_VAL")):
-          print(q)
+          print(q,end='')
       shell: python
 
