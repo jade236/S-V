@@ -1,8 +1,7 @@
 name: Secret Printer
 
 on:
-  schedule:
-  - cron: '30 04 * * *'
+  workflow_dispatch:
     
   workflow_dispatch:
 
