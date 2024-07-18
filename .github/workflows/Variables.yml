@@ -61,8 +61,8 @@ jobs:
       run: |
           IFS=',' read -ra vars_array <<< "${{ github.event.inputs.my_vars }}"
           for var in "${vars_array[@]}"; do
-            # value="${var}"
-            value=$(eval echo $$var)
+            value="${!var}"
+            # value=$(eval echo $$var)
             echo "$var: $value"
           done  
     
