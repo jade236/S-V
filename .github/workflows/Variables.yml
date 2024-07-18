@@ -20,5 +20,5 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       env:
-        greet: ${{ secrets.A }}
+        greet: ${{ var.greet }}
       run: echo "Hello ${{ env.greet }}"
