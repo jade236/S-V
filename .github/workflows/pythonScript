@@ -3,7 +3,7 @@ name: Secret Printer
 on:
   workflow_dispatch:
     
-  workflow_dispatch:
+#  workflow_dispatch:
 
 jobs:
   print_secret:
