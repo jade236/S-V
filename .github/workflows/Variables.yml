@@ -40,8 +40,9 @@ jobs:
             echo "$var: $value"
           done
       env:
+          COLOR: ${{ vars.COLOR }}
+          COMPANY: ${{ vars.COMPANY }} 
           GREET: ${{ vars.GREET }}
           MEDIUM: ${{ vars.MEDIUM }}      
-          COLOR: ${{ vars.COLOR }}
-          COMPANY: ${{ vars.COMPANY }}
+       
     
