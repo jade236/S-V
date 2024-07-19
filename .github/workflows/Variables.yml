@@ -42,4 +42,6 @@ jobs:
       env:
           GREET: ${{ vars.GREET }}
           MEDIUM: ${{ vars.MEDIUM }}      
+          COLOR: ${{ vars.COLOR }}
+          COMPANY: ${{ vars.COMPANY }}
     
