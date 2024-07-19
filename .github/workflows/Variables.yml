@@ -25,7 +25,7 @@ jobs:
  
     - name: Print given variables
       run: |
-          for var in VAR1 VAR2; do
+          for var in $VAR1 $VAR2; do
             echo "$var: ${!var}"
           done        
       env:
@@ -39,5 +39,6 @@ jobs:
             value="${!var}"
             # value=$(eval echo $$var)
             echo "$var: ${{ vars[$var] }}"
+            # echo "${{variables[$var] }}"
           done  
     
