@@ -23,14 +23,14 @@ jobs:
     - name: Read a variable
       run: echo "${{ vars.MEDIUM }} ITS ME!"
  
-    - name: Print given variables
-      run: |
-          for var in GREET MEDIUM; do
-            echo "$var: ${!var}"
-          done        
-      env:
-          GREET: ${{ vars.GREET }}
-          MEDIUM: ${{ vars.MEDIUM }}
+    # - name: Print given variables
+    #   run: |
+    #       for var in GREET MEDIUM; do
+    #         echo "$var: ${!var}"
+    #       done        
+    #   env:
+    #       GREET: ${{ vars.GREET }}
+    #       MEDIUM: ${{ vars.MEDIUM }}
                
     - name: Print input variables
       run: |
