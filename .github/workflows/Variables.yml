@@ -29,8 +29,8 @@ jobs:
             echo "$var: ${!var}"
           done        
       env:
-          VAR1: ${{ vars.GREET }}
-          VAR2: ${{ vars.MEDIUM }}
+          GREET: ${{ vars.GREET }}
+          MEDIUM: ${{ vars.MEDIUM }}
                
     - name: Print input variables
       run: |
