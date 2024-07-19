@@ -37,6 +37,6 @@ jobs:
           IFS=',' read -ra vars_array <<< "${{ github.event.inputs.my_vars }}"
           for var in "${vars_array[@]}"; do
             value="${!var}"
-            echo "$var: ${!var}"
+            echo "$var: $value"
           done  
     
