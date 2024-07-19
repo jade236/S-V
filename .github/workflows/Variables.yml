@@ -1,4 +1,4 @@
-# This is a basic workflow that is manually triggered
+ # This is a basic workflow that is manually triggered
 
 name: Environment Variable workflow
 
@@ -38,6 +38,6 @@ jobs:
           for var in "${vars_array[@]}"; do
             value="${!var}"
             # value=$(eval echo $$var)
-            echo "$var: ${!var}"
+            echo "$var: ${{ vars. $var }}"
           done  
     
