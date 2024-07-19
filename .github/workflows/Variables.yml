@@ -38,5 +38,8 @@ jobs:
           for var in "${vars_array[@]}"; do
             value="${!var}"
             echo "$var: $value"
-          done  
+          done
+      env:
+          GREET: ${{ vars.GREET }}
+          MEDIUM: ${{ vars.MEDIUM }}      
     
