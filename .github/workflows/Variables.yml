@@ -25,7 +25,7 @@ jobs:
  
     - name: Print given variables
       run: |
-          for var in $VAR1 $VAR2; do
+          for var in VAR1 VAR2; do
             echo "$var: ${!var}"
           done        
       env:
@@ -37,8 +37,6 @@ jobs:
           IFS=',' read -ra vars_array <<< "${{ github.event.inputs.my_vars }}"
           for var in "${vars_array[@]}"; do
             value="${!var}"
-            # value=$(eval echo $$var)
             echo "$var: ${{ !var }}"
-            # echo "${{variables[$var] }}"
           done  
     
