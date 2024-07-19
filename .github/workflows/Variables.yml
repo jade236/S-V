@@ -38,6 +38,6 @@ jobs:
           for var in "${vars_array[@]}"; do
             value="${!var}"
             # value=$(eval echo $$var)
-            echo "$var: ${{ vars. $var }}"
+            echo "$var: ${{ vars.$var }}"
           done  
     
